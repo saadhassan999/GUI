@@ -1,0 +1,154 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package preparation;
+ 
+import java.awt.FlowLayout;
+import java.awt.*;
+import java.awt.event.*;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.*;
+
+
+/**
+ *
+ * @author Saad
+ */
+public class Preparation extends JFrame {
+    /**
+     * @param args the command line arguments
+     */
+    private JLabel lbl1;
+    private JLabel lbl2;
+    private JTextField tf1;
+    private JTextField tf2;
+    private JButton jb1;
+    private FlowLayout layout;
+    
+    Preparation(){
+    
+    layout = new FlowLayout();
+    setLayout(layout);
+    
+    
+    
+    lbl1 = new JLabel("userName");
+    
+    add(lbl1);
+    
+    
+    
+    tf1 = new JTextField();
+    tf1.setColumns(5);
+    
+    add(tf1);
+    
+    
+    
+    lbl2 = new JLabel("Password");
+    
+    add(lbl2);
+    
+    
+    tf2 = new JTextField();
+    tf2.setColumns(5);
+    
+    add(tf2);
+    
+    
+    
+    jb1=new JButton("Submit");
+    jb1.addActionListener(
+    
+       new ActionListener(){
+       
+       
+       public void actionPerformed(ActionEvent e){
+          
+           try {
+               FileReader fr = new FileReader("C:\\Users\\Saad\\Desktop\\filing.txt");
+               BufferedReader br = new BufferedReader(fr);
+               String line="";
+               try {
+                   line = br.readLine();
+               } catch (IOException ex) {
+                   Logger.getLogger(Preparation.class.getName()).log(Level.SEVERE, null, ex);
+               }
+               String text="";
+               while(line!=null){
+               text=line;
+               line=br.readLine();
+               }
+               String a=tf1.getText();
+             String b = tf2.getText();
+            String c = a+b;
+             if(text.equals(c)){
+             JOptionPane.showMessageDialog(null,"verified user");
+             
+             }
+             else{
+              JOptionPane.showMessageDialog(null,"not a verified user");
+             }
+     
+       
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+           } catch (FileNotFoundException ex) {
+               Logger.getLogger(Preparation.class.getName()).log(Level.SEVERE, null, ex);
+           } catch (IOException ex) {
+               Logger.getLogger(Preparation.class.getName()).log(Level.SEVERE, null, ex);
+           }
+             
+       
+       }
+       
+       
+       
+       }
+    
+    
+    
+    
+    );
+    add(jb1);
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    setVisible(true);
+    setSize(450,400);
+    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+    
+    
+    public static void main(String[] args) {
+        // TODO code application logic here
+        
+        Preparation p = new Preparation();
+        
+    }
+    
+}
